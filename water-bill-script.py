@@ -5,13 +5,15 @@ from water_bill import WaterBill
 import time
 from decouple import config
 import json
+from webdriver_manager.chrome import ChromeDriverManager
 
 PATH = "/Users/mason/development/chromedriver"
 URL = "https://ub.minneapolismn.gov/app/login.jsp"
 
 # Scrape water bill website for water bill information
 def get_water_bill():
-    driver = webdriver.Chrome(PATH)
+    driver = webdriver.Chrome(ChromeDriverManager().install())
+    # driver = webdriver.Chrome(PATH)
     driver.get(URL)
     driver.find_element_by_id("accountAccessTab").click()
     time.sleep(1)
