@@ -18,7 +18,7 @@ def get_water_bill():
     driver.find_element_by_id("accountAccessTab").click()
     time.sleep(1)
     driver.find_element_by_id("searchAddress").send_keys(config('address',default=''))
-    time.sleep(1)
+    time.sleep(3)
     driver.find_element_by_id("ui-id-1").click()
     time.sleep(1)
     driver.find_element_by_id("addressSearchButton").click()
@@ -49,7 +49,7 @@ def main():
     # Dictionary of roommates. Key value pair of name -> venmo_id
     roommates = json.loads(config('roommates', '{}'))
     
-    price_per_roommate = calculate_price_per_roommate((len(roommates)+1), water_bill.balance)
+    price_per_roommate = calculate_price_per_roommate((len(roommates)+1), water_bill.balance - 10.72)
     request_money(venmo_client, roommates, price_per_roommate, water_bill.due_date)
 
 if __name__ == "__main__":
